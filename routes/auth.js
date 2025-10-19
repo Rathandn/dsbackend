@@ -5,8 +5,8 @@ dotenv.config()
 const router = express.Router()
 
 // 🧠 Simple in-memory admin credentials
-const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin'
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'divatesilks123'
+const ADMIN_USERNAME = process.env.ADMIN_USERNAME 
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD 
 
 // ✅ POST /api/auth/login
 router.post('/login', (req, res) => {
