@@ -2,7 +2,8 @@ import mongoose from 'mongoose'
 
 const productTemplateSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true }, // Template name e.g. "Silk Saree Template"
+    templateName: { type: String, required: true }, // 👈 new field
+    name: { type: String, required: true }, // product display name
     productName: { type: String, required: true },
     category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
     price: { type: Number, required: true },

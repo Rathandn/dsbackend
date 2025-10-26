@@ -17,12 +17,20 @@ router.get('/', requireAdmin, async (req, res) => {
 // 🧩 POST create new template
 router.post('/', requireAdmin, async (req, res) => {
   try {
-    console.log('Incoming template data:', req.body) // ✅ Add this
-    const template = await ProductTemplate.create(req.body)
+    const { templateName, name, category, price } = req.body
+    if (!templateName || !name || !category || !price) {
+      return res.status(400).json({ message: 'Missing required fields' })
+    }
+
+    const template = await ProductTemplate.create({
+      ...req.body,
+      productName: name, // keep consistency
+    })
+
     res.status(201).json(template)
   } catch (err) {
-    console.error('❌ Template creation failed:', err)
-    res.status(500).json({ message: err.message || 'Create template failed' })
+    console.error('❌ Create template failed:', err)
+    res.status(500).json({ message: 'Create template failed' })
   }
 })
 
