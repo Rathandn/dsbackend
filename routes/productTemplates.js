@@ -17,12 +17,15 @@ router.get('/', requireAdmin, async (req, res) => {
 // 🧩 POST create new template
 router.post('/', requireAdmin, async (req, res) => {
   try {
+    console.log('Incoming template data:', req.body) // ✅ Add this
     const template = await ProductTemplate.create(req.body)
     res.status(201).json(template)
   } catch (err) {
-    res.status(500).json({ message: 'Create template failed' })
+    console.error('❌ Template creation failed:', err)
+    res.status(500).json({ message: err.message || 'Create template failed' })
   }
 })
+
 
 // 🧩 DELETE template
 router.delete('/:id', requireAdmin, async (req, res) => {
